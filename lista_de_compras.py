@@ -10,8 +10,8 @@ class ListaDeComprasApp:
 
         # Datos iniciales de las categorías y sus ítems
         self.categorias = {
-            "Verdulería": ["Tomate", "Lechuga", "Papa","Cebolla","Frutilla","Manzana","Pera"],
-            "Perfumería": ["Shampoo", "Jabón", "Perfume","Pasta de Dientes","Peine","Afeitadora"],
+            "Verdulería": ["Tomate", "Lechuga", "Papa"],
+            "Perfumería": ["Shampoo", "Jabón", "Perfume"],
             "Lácteos": ["Leche", "Yogur", "Queso"]
         }
 
@@ -35,9 +35,15 @@ class ListaDeComprasApp:
         for categoria in self.categorias.keys():
             self.lista_categorias.insert(tk.END, categoria)
 
-        # Vincular la selección de una categoría al evento para mostrar los ítems
-        self.lista_categorias.bind(
-            '<<ListboxSelect>>', self.seleccionar_categoria)
+        # Botón para seleccionar una categoría
+        self.btn_seleccionar_categoria = tk.Button(
+            self.frame_categorias, text="Seleccionar Categoría", command=self.seleccionar_categoria)
+        self.btn_seleccionar_categoria.pack(pady=5)
+
+        # Botón para crear una nueva categoría
+        self.btn_crear_categoria = tk.Button(
+            self.frame_categorias, text="Crear Nueva Categoría", command=self.crear_categoria)
+        self.btn_crear_categoria.pack(pady=5)
 
         # Lista de ítems en la categoría seleccionada con opción de selección múltiple
         tk.Label(self.frame_items, text="Ítems").pack()
@@ -88,11 +94,12 @@ class ListaDeComprasApp:
             self.actualizar_lista()
 
     # Función para seleccionar una categoría y mostrar sus ítems
-    def seleccionar_categoria(self, event):
+    def seleccionar_categoria(self):
         categoria = self.lista_categorias.get(tk.ACTIVE)
-        self.lista_items.delete(0, tk.END)
-        for item in self.categorias[categoria]:
-            self.lista_items.insert(tk.END, item)
+        if categoria:
+            self.lista_items.delete(0, tk.END)
+            for item in self.categorias[categoria]:
+                self.lista_items.insert(tk.END, item)
 
     # Función para agregar un nuevo ítem a la categoría seleccionada
     def agregar_item_a_categoria(self):
@@ -102,7 +109,7 @@ class ListaDeComprasApp:
                 "Agregar Ítem", f"Ingresa un nuevo ítem para la categoría {categoria}:")
             if nuevo_item:
                 self.categorias[categoria].append(nuevo_item)
-                self.seleccionar_categoria(None)
+                self.seleccionar_categoria()
             else:
                 messagebox.showwarning(
                     "Advertencia", "No se ingresó ningún ítem.")
@@ -110,11 +117,26 @@ class ListaDeComprasApp:
             messagebox.showwarning(
                 "Advertencia", "Selecciona una categoría primero.")
 
+    # Función para crear una nueva categoría
+    def crear_categoria(self):
+        nueva_categoria = simpledialog.askstring(
+            "Nueva Categoría", "Ingresa el nombre de la nueva categoría:")
+        if nueva_categoria:
+            if nueva_categoria not in self.categorias:
+                self.categorias[nueva_categoria] = []
+                self.lista_categorias.insert(tk.END, nueva_categoria)
+            else:
+                messagebox.showwarning(
+                    "Advertencia", "Esa categoría ya existe.")
+        else:
+            messagebox.showwarning(
+                "Advertencia", "No se ingresó ningún nombre.")
+
 
 # Crear una ventana principal
 root = tk.Tk()
 root.title("Aplicación Principal")
-root.geometry("398x600")
+root.geometry("400x660")
 
 # Agregar una imagen a la ventana principal
 # Reemplaza con la ruta de tu imagen

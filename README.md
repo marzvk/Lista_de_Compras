@@ -4,7 +4,7 @@
 Gustavo Hernan Juarez  
 Adrián Fabricio A. Herrera  
 Blas Quinteros Aguirre  
-Rubén  
+Martín Leiva Ruiz Diaz  
 Mariano Edgardo Zovak
 
 ## Stack de tecnologias

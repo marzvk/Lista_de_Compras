@@ -1,4 +1,4 @@
-# Nombre del proyecto 
+# Lista de Compras
 
 ## Integrantes del grupo
 Gustavo Hernan Juarez  
@@ -19,11 +19,11 @@ Informatorio - 1° cohorte 2024 - etapa 2 - Comisión 5- Grupo 3
 -[Corel Draw Marzo 2022 v24.1] (https://www.coreldraw.com/la/)  
 
 ## Video demostrativo
-
+-[Youtube] ([Ver Video](https://youtu.be/SFSMT46x7c4))
 
 ## Instrucciones para ejecutar el programa
 Instalar Python desde https://www.python.org  
-Ejecutar ''ListaDeComprasFinal''
+Ejecutar ''lista_de_compras.py''
 
 AGREGAR UN ITEM A LA LISTA:  
 1_Seleccionar una categoría del recuadro ''Categorías''clickeando sobre ella  
